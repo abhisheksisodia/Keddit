@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.keddit.abhisheksisodia.keddit.R
-import com.keddit.abhisheksisodia.keddit.common.adapter.NewsAdapter
+import com.keddit.abhisheksisodia.keddit.adapter.NewsAdapter
 import com.keddit.abhisheksisodia.keddit.common.inflate
 import kotlinx.android.synthetic.main.news_fragment.*
 

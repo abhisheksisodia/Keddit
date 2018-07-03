@@ -1,4 +1,4 @@
-package com.keddit.abhisheksisodia.keddit.common.adapter
+package com.keddit.abhisheksisodia.keddit.adapter
 
 import android.support.v4.util.SparseArrayCompat
 import android.support.v7.widget.RecyclerView
@@ -10,11 +10,12 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: ArrayList<ViewType>
     private var delegateAdapters = SparseArrayCompat<ViewTypeDelegateAdapter>()
     private val loadingItem = object : ViewType {
-        override fun getViewType() = AdapterTypes.LOADING
+        override fun getViewType() = AdapterType.LOADING
     }
 
     init {
-        delegateAdapters.put(AdapterTypes.LOADING, LoadingDelegateAdapter())
+        delegateAdapters.put(AdapterType.LOADING, LoadingDelegateAdapter())
+        delegateAdapters.put(AdapterType.NEWS, NewsDelegateAdapter())
         items = ArrayList()
         items.add(loadingItem)
     }
