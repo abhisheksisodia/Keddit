@@ -3,6 +3,11 @@ package com.keddit.abhisheksisodia.keddit.models
 import com.keddit.abhisheksisodia.keddit.adapter.AdapterType
 import com.keddit.abhisheksisodia.keddit.adapter.ViewType
 
+data class RedditNews(
+        val after: String,
+        val before: String,
+        val news: List<RedditNewsItem>)
+
 data class RedditNewsItem(
         val author: String,
         val title: String,
