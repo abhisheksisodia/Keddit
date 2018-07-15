@@ -9,13 +9,13 @@ import android.view.ViewGroup
 import com.keddit.abhisheksisodia.keddit.R
 import com.keddit.abhisheksisodia.keddit.adapter.NewsAdapter
 import com.keddit.abhisheksisodia.keddit.common.inflate
-import com.keddit.abhisheksisodia.keddit.models.RedditNewsItem
 import kotlinx.android.synthetic.main.news_fragment.*
 
 class NewsFragment : Fragment() {
 
+    private val newsManager by lazy { NewsManager() }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //val view = inflater.inflate(R.layout.news_fragment, container, false)
         return container?.inflate(R.layout.news_fragment)
     }
 
@@ -27,18 +27,7 @@ class NewsFragment : Fragment() {
         initAdapter()
 
         if (savedInstanceState == null) {
-            val news = mutableListOf<RedditNewsItem>()
-            for (i in 1..10) {
-                news.add(RedditNewsItem(
-                        "author$i",
-                        "Title $i",
-                        i, // number of comments
-                        1457207701L - i * 200, // time
-                        "https://picsum.photos/200/200?image=$i", // image url
-                        "url"
-                ))
-            }
-            (news_list.adapter as NewsAdapter).addNews(news)
+            requestNews()
         }
     }
 
@@ -46,5 +35,9 @@ class NewsFragment : Fragment() {
         if (news_list.adapter == null) {
             news_list.adapter = NewsAdapter()
         }
+    }
+
+    private fun requestNews() {
+        // (news_list.adapter as NewsAdapter).addNews(news)
     }
 }
