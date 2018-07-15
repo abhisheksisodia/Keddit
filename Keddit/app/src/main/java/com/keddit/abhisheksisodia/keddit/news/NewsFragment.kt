@@ -1,17 +1,20 @@
 package com.keddit.abhisheksisodia.keddit.news
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.keddit.abhisheksisodia.keddit.R
 import com.keddit.abhisheksisodia.keddit.adapter.NewsAdapter
+import com.keddit.abhisheksisodia.keddit.common.RxBaseFragment
 import com.keddit.abhisheksisodia.keddit.common.inflate
 import kotlinx.android.synthetic.main.news_fragment.*
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
-class NewsFragment : Fragment() {
+class NewsFragment : RxBaseFragment() {
 
     private val newsManager by lazy { NewsManager() }
 
@@ -38,6 +41,17 @@ class NewsFragment : Fragment() {
     }
 
     private fun requestNews() {
-        // (news_list.adapter as NewsAdapter).addNews(news)
+        val subscription = newsManager.getNews()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { retrievedNews ->
+                            (news_list.adapter as NewsAdapter).addNews(retrievedNews)
+                        },
+                        { e ->
+                            Snackbar.make(news_list, e.message ?: "", Snackbar.LENGTH_LONG).show()
+                        }
+                )
+        subscriptions.add(subscription)
     }
 }
