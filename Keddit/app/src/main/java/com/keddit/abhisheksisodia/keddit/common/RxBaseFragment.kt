@@ -1,6 +1,6 @@
 package com.keddit.abhisheksisodia.keddit.common
 
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import rx.subscriptions.CompositeSubscription
 
 open class RxBaseFragment() : Fragment() {
