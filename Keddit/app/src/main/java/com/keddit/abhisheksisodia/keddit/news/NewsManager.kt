@@ -1,11 +1,12 @@
 package com.keddit.abhisheksisodia.keddit.news
 
-import com.keddit.abhisheksisodia.keddit.api.RestApi
+import com.keddit.abhisheksisodia.keddit.api.NewsAPI
+import com.keddit.abhisheksisodia.keddit.api.NewsRestAPI
 import com.keddit.abhisheksisodia.keddit.models.RedditNews
 import com.keddit.abhisheksisodia.keddit.models.RedditNewsItem
 import rx.Observable
 
-class NewsManager(private val api: RestApi = RestApi()) {
+class NewsManager(private val api: NewsAPI = NewsRestAPI()) {
 
     /**
      *
