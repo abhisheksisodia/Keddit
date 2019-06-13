@@ -1,4 +1,4 @@
-package com.abhisheksisodia.weatherkot.adapters
+package com.abhisheksisodia.weatherkot.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
