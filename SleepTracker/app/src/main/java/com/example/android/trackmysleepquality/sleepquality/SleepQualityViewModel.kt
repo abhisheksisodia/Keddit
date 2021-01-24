@@ -16,125 +16,61 @@
 
 package com.example.android.trackmysleepquality.sleepquality
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
-import com.example.android.trackmysleepquality.database.SleepNight
-import com.example.android.trackmysleepquality.formatNights
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
- * ViewModel for SleepTrackerFragment.
+ * ViewModel for SleepQualityFragment.
+ *
+ * @param sleepNightKey The key of the current night we are working on.
  */
-class SleepTrackerViewModel(
-        val database: SleepDatabaseDao,
-        application: Application) : AndroidViewModel(application) {
+class SleepQualityViewModel(
+        private val sleepNightKey: Long = 0L,
+        val database: SleepDatabaseDao) : ViewModel() {
 
     /**
+     * Variable that tells the fragment whether it should navigate to [SleepTrackerFragment].
+     *
+     * This is `private` because we don't want to expose the ability to set [MutableLiveData] to
+     * the [Fragment]
      */
+    private val _navigateToSleepTracker = MutableLiveData<Boolean?>()
+
+    /**
+     * When true immediately navigate back to the [SleepTrackerFragment]
+     */
+    val navigateToSleepTracker: LiveData<Boolean?>
+        get() = _navigateToSleepTracker
 
     /**
      *
+     */
+
+    /**
+     * Call this immediately after navigating to [SleepTrackerFragment]
+     */
+    fun doneNavigating() {
+        _navigateToSleepTracker.value = null
+    }
+
+    /**
+     * Sets the sleep quality and updates the database.
      *
+     * Then navigates back to the SleepTrackerFragment.
      */
-
-    private var tonight = MutableLiveData<SleepNight?>()
-
-    private val nights = database.getAllNights()
-
-    /**
-     * Converted nights to Spanned for displaying.
-     */
-    val nightsString = Transformations.map(nights) { nights ->
-        formatNights(nights, application.resources)
-    }
-
-    init {
-        initializeTonight()
-    }
-
-    private fun initializeTonight() {
+    fun onSetSleepQuality(quality: Int) {
         viewModelScope.launch {
-            tonight.value = getTonightFromDatabase()
-        }
-    }
+            val tonight = database.get(sleepNightKey) ?: return@launch
+            tonight.sleepQuality = quality
+            database.update(tonight)
 
-    /**
-     *  Handling the case of the stopped app or forgotten recording,
-     *  the start and end times will be the same.j
-     *
-     *  If the start time and end time are not the same, then we do not have an unfinished
-     *  recording.
-     */
-    private suspend fun getTonightFromDatabase(): SleepNight? {
-        var night = database.getTonight()
-        if (night?.endTimeMilli != night?.startTimeMilli) {
-            night = null
-        }
-        return night
-    }
-
-
-    private suspend fun clear() {
-        database.clear()
-    }
-
-    private suspend fun update(night: SleepNight) {
-        database.update(night)
-    }
-
-    private suspend fun insert(night: SleepNight) {
-        database.insert(night)
-    }
-
-    /**
-     * Executes when the START button is clicked.
-     */
-    fun onStartTracking() {
-        viewModelScope.launch {
-            // Create a new night, which captures the current time,
-            // and insert it into the database.
-            val newNight = SleepNight()
-
-            insert(newNight)
-
-            tonight.value = getTonightFromDatabase()
-        }
-    }
-
-    /**
-     * Executes when the STOP button is clicked.
-     */
-    fun onStopTracking() {
-        viewModelScope.launch {
-            // In Kotlin, the return@label syntax is used for specifying which function among
-            // several nested ones this statement returns from.
-            // In this case, we are specifying to return from launch(),
-            // not the lambda.
-            val oldNight = tonight.value ?: return@launch
-
-            // Update the night in the database to add the end time.
-            oldNight.endTimeMilli = System.currentTimeMillis()
-
-            update(oldNight)
-        }
-    }
-
-    /**
-     * Executes when the CLEAR button is clicked.
-     */
-    fun onClear() {
-        viewModelScope.launch {
-            // Clear the database table.
-            clear()
-
-            // And clear tonight since it's no longer in the database
-            tonight.value = null
+            // Setting this state variable to true will alert the observer and trigger navigation.
+            _navigateToSleepTracker.value = true
         }
     }
 }
-
 
