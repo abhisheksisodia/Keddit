@@ -1,0 +1,400 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGBUS (0xa) at pc=0x000000010c5bd583, pid=45022, tid=51723
+#
+# JRE version: OpenJDK Runtime Environment (11.0.10) (build 11.0.10+0-b96-7281165)
+# Java VM: OpenJDK 64-Bit Server VM (11.0.10+0-b96-7281165, mixed mode, tiered, compressed oops, g1 gc, bsd-amd64)
+# Problematic frame:
+# 
+[error occurred during error reporting (printing problematic frame), id 0xa, SIGBUS (0xa) at pc=0x000000010d74e13b]
+
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED -Xmx2048m -Dfile.encoding=UTF-8 -Duser.country=CA -Duser.language=en -Duser.variant org.gradle.launcher.daemon.bootstrap.GradleDaemon 7.0
+
+Host: MacBookPro16,1 x86_64 2600 MHz, 12 cores, 16G, Darwin 19.6.0
+Time: Mon May 24 15:34:12 2021 EDT elapsed time: 2706.042901 seconds (0d 0h 45m 6s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fe719a71000):  JavaThread "Daemon worker Thread 3" [_thread_in_native, id=51723, stack(0x000070000b794000,0x000070000b894000)]
+
+Stack: [0x000070000b794000,0x000070000b894000],  sp=0x000070000b88a688,  free space=985k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+[error occurred during error reporting (printing native stack), id 0xa, SIGBUS (0xa) at pc=0x000000010d74e13b]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J 9844  java.net.PlainSocketImpl.socketSetOption0(IZLjava/lang/Object;)V java.base@11.0.10 (0 bytes) @ 0x00000001195df01c [0x00000001195defc0+0x000000000000005c]
+J 9848 c1 java.net.PlainSocketImpl.socketSetOption(IZLjava/lang/Object;)V java.base@11.0.10 (64 bytes) @ 0x0000000112ddfd6c [0x0000000112ddf4c0+0x00000000000008ac]
+J 9843 c1 java.net.AbstractPlainSocketImpl.setOption(ILjava/lang/Object;)V java.base@11.0.10 (510 bytes) @ 0x0000000112dd2a84 [0x0000000112dd0380+0x0000000000002704]
+J 10583 c1 java.net.Socket.setSoTimeout(I)V java.base@11.0.10 (46 bytes) @ 0x0000000112faefc4 [0x0000000112fae8e0+0x00000000000006e4]
+J 10610 c1 sun.security.ssl.SSLSocketImpl.setSoTimeout(I)V java.base@11.0.10 (6 bytes) @ 0x0000000112fc0284 [0x0000000112fbffe0+0x00000000000002a4]
+J 10627 c1 org.apache.http.impl.conn.LoggingManagedHttpClientConnection.setSocketTimeout(I)V (53 bytes) @ 0x0000000112fc979c [0x0000000112fc8d40+0x0000000000000a5c]
+j  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.releaseConnection(Lorg/apache/http/HttpClientConnection;Ljava/lang/Object;JLjava/util/concurrent/TimeUnit;)V+183
+J 9849 c1 org.apache.http.impl.execchain.ConnectionHolder.releaseConnection(Z)V (176 bytes) @ 0x0000000112ddd00c [0x0000000112ddca20+0x00000000000005ec]
+j  org.apache.http.impl.execchain.ConnectionHolder.releaseConnection()V+5
+j  org.apache.http.impl.execchain.ResponseEntityProxy.releaseConnection()V+11
+j  org.apache.http.impl.execchain.ResponseEntityProxy.eofDetected(Ljava/io/InputStream;)Z+9
+J 10663 c1 org.apache.http.conn.EofSensorInputStream.checkEOF(I)V (60 bytes) @ 0x0000000112fd27ec [0x0000000112fd2660+0x000000000000018c]
+J 9899 c1 org.apache.http.conn.EofSensorInputStream.read([BII)I (43 bytes) @ 0x0000000112dfbea4 [0x0000000112dfbc20+0x0000000000000284]
+J 10662 c1 org.gradle.internal.resource.transfer.AbstractProgressLoggingHandler$ProgressLoggingInputStream.read([BII)I (27 bytes) @ 0x0000000112fd2f74 [0x0000000112fd2e60+0x0000000000000114]
+J 6236 c1 java.io.BufferedInputStream.fill()V java.base@11.0.10 (236 bytes) @ 0x00000001125ba784 [0x00000001125ba440+0x0000000000000344]
+J 7709 c2 java.io.BufferedInputStream.read([BII)I java.base@11.0.10 (113 bytes) @ 0x000000011949558c [0x0000000119495180+0x000000000000040c]
+J 9203 c2 com.google.common.io.CountingInputStream.read([BII)I (33 bytes) @ 0x000000011959adb8 [0x000000011959ad40+0x0000000000000078]
+J 5205 c2 java.io.FilterInputStream.read([B)I java.base@11.0.10 (9 bytes) @ 0x0000000119199e24 [0x0000000119199dc0+0x0000000000000064]
+j  org.apache.commons.io.IOUtils.copyLarge(Ljava/io/InputStream;Ljava/io/OutputStream;[B)J+5
+j  org.apache.commons.io.IOUtils.copy(Ljava/io/InputStream;Ljava/io/OutputStream;I)J+5
+j  org.apache.commons.io.IOUtils.copyLarge(Ljava/io/InputStream;Ljava/io/OutputStream;)J+5
+j  org.gradle.internal.resource.transfer.DefaultCacheAwareExternalResourceAccessor$DownloadAction.execute(Ljava/io/InputStream;Lorg/gradle/internal/resource/metadata/ExternalResourceMetaData;)Ljava/lang/Object;+81
+j  org.gradle.internal.resource.transfer.AccessorBackedExternalResource.withContentIfPresent(Lorg/gradle/internal/resource/ExternalResource$ContentAction;)Lorg/gradle/internal/resource/ExternalResourceReadResult;+56
+j  org.gradle.internal.resource.BuildOperationFiringExternalResourceDecorator$11.call(Lorg/gradle/internal/operations/BuildOperationContext;)Lorg/gradle/internal/resource/ExternalResourceReadResult;+12
+j  org.gradle.internal.resource.BuildOperationFiringExternalResourceDecorator$11.call(Lorg/gradle/internal/operations/BuildOperationContext;)Ljava/lang/Object;+2
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(Lorg/gradle/internal/operations/CallableBuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+3
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+6
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Lorg/gradle/internal/operations/BuildOperation;+22
+J 10341 c1 org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor$Builder;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecution;)Ljava/lang/Object; (140 bytes) @ 0x0000000112f1b06c [0x0000000112f1a220+0x0000000000000e4c]
+J 10413 c1 org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationWorker;Lorg/gradle/internal/operations/BuildOperationState;)V (23 bytes) @ 0x0000000112f53abc [0x0000000112f53800+0x00000000000002bc]
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.call(Lorg/gradle/internal/operations/CallableBuildOperation;)Ljava/lang/Object;+16
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.lambda$call$2(Lorg/gradle/internal/operations/CallableBuildOperation;Lorg/gradle/internal/operations/BuildOperationState;)Ljava/lang/Object;+5
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor$$Lambda$151.apply(Ljava/lang/Object;)Ljava/lang/Object;+12
+j  org.gradle.internal.operations.UnmanagedBuildOperationWrapper.callWithUnmanagedSupport(Lorg/gradle/internal/operations/BuildOperationState;Ljava/util/function/Function;)Ljava/lang/Object;+8
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.call(Lorg/gradle/internal/operations/CallableBuildOperation;)Ljava/lang/Object;+15
+j  org.gradle.internal.resource.BuildOperationFiringExternalResourceDecorator.withContentIfPresent(Lorg/gradle/internal/resource/ExternalResource$ContentAction;)Lorg/gradle/internal/resource/ExternalResourceReadResult;+13
+j  org.gradle.internal.resource.transfer.DefaultCacheAwareExternalResourceAccessor.copyToCache(Lorg/gradle/internal/resource/ExternalResourceName;Lorg/gradle/internal/resource/transfer/CacheAwareExternalResourceAccessor$ResourceFileStore;Lorg/gradle/internal/resource/ExternalResource;)Lorg/gradle/internal/resource/local/LocallyAvailableExternalResource;+14
+j  org.gradle.internal.resource.transfer.DefaultCacheAwareExternalResourceAccessor.lambda$getResource$1(Lorg/gradle/internal/resource/ExternalResourceName;Lorg/gradle/internal/resource/local/LocallyAvailableResourceCandidates;Lorg/gradle/internal/resource/transfer/CacheAwareExternalResourceAccessor$ResourceFileStore;)Lorg/gradle/internal/resource/local/LocallyAvailableExternalResource;+62
+j  org.gradle.internal.resource.transfer.DefaultCacheAwareExternalResourceAccessor$$Lambda$602.get()Ljava/lang/Object;+16
+j  org.gradle.cache.internal.ProducerGuard$AdaptiveProducerGuard.guardByKey(Ljava/lang/Object;Ljava/util/function/Supplier;)Ljava/lang/Object;+51
+j  org.gradle.internal.resource.transfer.DefaultCacheAwareExternalResourceAccessor.getResource(Lorg/gradle/internal/resource/ExternalResourceName;Ljava/lang/String;Lorg/gradle/internal/resource/transfer/CacheAwareExternalResourceAccessor$ResourceFileStore;Lorg/gradle/internal/resource/local/LocallyAvailableResourceCandidates;)Lorg/gradle/internal/resource/local/LocallyAvailableExternalResource;+15
+j  org.gradle.api.internal.artifacts.repositories.resolver.DefaultExternalResourceArtifactResolver.downloadByCoords(Ljava/util/List;Lorg/gradle/internal/component/external/model/ModuleComponentArtifactMetadata;Lorg/gradle/internal/resolve/result/ResourceAwareResolveResult;)Lorg/gradle/internal/resource/local/LocallyAvailableExternalResource;+99
+j  org.gradle.api.internal.artifacts.repositories.resolver.DefaultExternalResourceArtifactResolver.downloadStaticResource(Ljava/util/List;Lorg/gradle/internal/component/external/model/ModuleComponentArtifactMetadata;Lorg/gradle/internal/resolve/result/ResourceAwareResolveResult;)Lorg/gradle/internal/resource/local/LocallyAvailableExternalResource;+26
+j  org.gradle.api.internal.artifacts.repositories.resolver.DefaultExternalResourceArtifactResolver.resolveArtifact(Lorg/gradle/internal/component/external/model/ModuleComponentArtifactMetadata;Lorg/gradle/internal/resolve/result/ResourceAwareResolveResult;)Lorg/gradle/internal/resource/local/LocallyAvailableExternalResource;+14
+j  org.gradle.api.internal.artifacts.repositories.metadata.AbstractRepositoryMetadataSource.parseMetaDataFromArtifact(Ljava/lang/String;Lorg/gradle/api/internal/artifacts/ivyservice/ivyresolve/ComponentResolvers;Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/api/internal/artifacts/repositories/resolver/ExternalResourceArtifactResolver;Lorg/gradle/internal/resolve/result/ResourceAwareResolveResult;)Lorg/gradle/internal/component/external/model/MutableModuleComponentResolveMetadata;+13
+j  org.gradle.api.internal.artifacts.repositories.metadata.AbstractRepositoryMetadataSource.create(Ljava/lang/String;Lorg/gradle/api/internal/artifacts/ivyservice/ivyresolve/ComponentResolvers;Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/api/internal/artifacts/repositories/resolver/ExternalResourceArtifactResolver;Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;)Lorg/gradle/internal/component/external/model/MutableModuleComponentResolveMetadata;+8
+j  org.gradle.api.internal.artifacts.repositories.metadata.DefaultMavenPomMetadataSource.create(Ljava/lang/String;Lorg/gradle/api/internal/artifacts/ivyservice/ivyresolve/ComponentResolvers;Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/api/internal/artifacts/repositories/resolver/ExternalResourceArtifactResolver;Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;)Lorg/gradle/internal/component/external/model/MutableModuleComponentResolveMetadata;+10
+j  org.gradle.api.internal.artifacts.repositories.metadata.RedirectingGradleMetadataModuleMetadataSource.create(Ljava/lang/String;Lorg/gradle/api/internal/artifacts/ivyservice/ivyresolve/ComponentResolvers;Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/api/internal/artifacts/repositories/resolver/ExternalResourceArtifactResolver;Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;)Lorg/gradle/internal/component/external/model/MutableModuleComponentResolveMetadata;+13
+j  org.gradle.api.internal.artifacts.repositories.resolver.ExternalResourceResolver.resolveStaticDependency(Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;Lorg/gradle/api/internal/artifacts/repositories/resolver/ExternalResourceArtifactResolver;)V+51
+j  org.gradle.api.internal.artifacts.repositories.resolver.MavenResolver.doResolveComponentMetaData(Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;)V+83
+j  org.gradle.api.internal.artifacts.repositories.resolver.ExternalResourceResolver$RemoteRepositoryAccess.resolveComponentMetaData(Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;)V+7
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.CachingModuleComponentRepository$ResolveAndCacheRepositoryAccess.resolveComponentMetaData(Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;)V+24
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.ErrorHandlingModuleComponentRepository$ErrorHandlingModuleComponentRepositoryAccess.lambda$resolveComponentMetaData$5(Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;)V+7
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.ErrorHandlingModuleComponentRepository$ErrorHandlingModuleComponentRepositoryAccess$$Lambda$597.run()V+16
+J 10470 c1 org.gradle.api.internal.artifacts.ivyservice.ivyresolve.ErrorHandlingModuleComponentRepository$ErrorHandlingModuleComponentRepositoryAccess$$Lambda$600.call()Ljava/lang/Object; (8 bytes) @ 0x0000000112f87824 [0x0000000112f876e0+0x0000000000000144]
+J 10366 c1 org.gradle.api.internal.artifacts.ivyservice.ivyresolve.ErrorHandlingModuleComponentRepository$ErrorHandlingModuleComponentRepositoryAccess.tryResolveAndMaybeBlacklist(Lorg/gradle/internal/resolve/result/ErroringResolveResult;Ljava/util/concurrent/Callable;Lorg/gradle/api/Transformer;)V (221 bytes) @ 0x0000000112f35244 [0x0000000112f350c0+0x0000000000000184]
+J 10469 c1 org.gradle.api.internal.artifacts.ivyservice.ivyresolve.ErrorHandlingModuleComponentRepository$ErrorHandlingModuleComponentRepositoryAccess.performOperationWithRetries(Lorg/gradle/internal/resolve/result/ErroringResolveResult;Ljava/lang/Runnable;Lorg/gradle/internal/Factory;Lorg/gradle/api/Transformer;)V (42 bytes) @ 0x0000000112f86f94 [0x0000000112f86760+0x0000000000000834]
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.ErrorHandlingModuleComponentRepository$ErrorHandlingModuleComponentRepositoryAccess.resolveComponentMetaData(Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;)V+23
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.ComponentMetaDataResolveState.process(Lorg/gradle/api/internal/artifacts/ivyservice/ivyresolve/ModuleComponentRepositoryAccess;)V+13
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.ComponentMetaDataResolveState.resolve()Lorg/gradle/internal/resolve/result/BuildableModuleComponentMetaDataResolveResult;+77
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.RepositoryChainComponentMetaDataResolver.findBestMatch(Ljava/util/LinkedList;Ljava/util/Collection;Ljava/util/Collection;)Lorg/gradle/api/internal/artifacts/ivyservice/ivyresolve/RepositoryChainModuleResolution;+21
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.RepositoryChainComponentMetaDataResolver.findBestMatch(Ljava/util/List;Ljava/util/Collection;)Lorg/gradle/api/internal/artifacts/ivyservice/ivyresolve/RepositoryChainModuleResolution;+23
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.RepositoryChainComponentMetaDataResolver.resolveModule(Lorg/gradle/api/artifacts/component/ModuleComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableComponentResolveResult;)V+97
+j  org.gradle.api.internal.artifacts.ivyservice.ivyresolve.RepositoryChainComponentMetaDataResolver.resolve(Lorg/gradle/api/artifacts/component/ComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableComponentResolveResult;)V+24
+j  org.gradle.api.internal.artifacts.ivyservice.resolveengine.ComponentResolversChain$ComponentMetaDataResolverChain.resolve(Lorg/gradle/api/artifacts/component/ComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableComponentResolveResult;)V+48
+j  org.gradle.api.internal.artifacts.ivyservice.clientmodule.ClientModuleResolver.resolve(Lorg/gradle/api/artifacts/component/ComponentIdentifier;Lorg/gradle/internal/component/model/ComponentOverrideMetadata;Lorg/gradle/internal/resolve/result/BuildableComponentResolveResult;)V+7
+j  org.gradle.api.internal.artifacts.ivyservice.resolveengine.graph.builder.ComponentState.resolve()V+88
+j  org.gradle.api.internal.artifacts.ivyservice.resolveengine.graph.builder.ComponentState.getMetadata()Lorg/gradle/internal/component/model/ComponentResolveMetadata;+1
+j  org.gradle.api.internal.artifacts.ivyservice.resolveengine.graph.builder.DownloadMetadataOperation.run(Lorg/gradle/internal/operations/BuildOperationContext;)V+4
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor$$Lambda$472.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+5
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Lorg/gradle/internal/operations/BuildOperation;+22
+J 10341 c1 org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor$Builder;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecution;)Ljava/lang/Object; (140 bytes) @ 0x0000000112f1b06c [0x0000000112f1a220+0x0000000000000e4c]
+J 10413 c1 org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationWorker;Lorg/gradle/internal/operations/BuildOperationState;)V (23 bytes) @ 0x0000000112f53abc [0x0000000112f53800+0x00000000000002bc]
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor$QueueWorker.execute(Lorg/gradle/internal/operations/BuildOperation;)V+16
+j  org.gradle.internal.operations.DefaultBuildOperationQueue$WorkerRunnable.runOperation(Lorg/gradle/internal/operations/BuildOperation;)V+8
+j  org.gradle.internal.operations.DefaultBuildOperationQueue$WorkerRunnable.doRunBatch(Lorg/gradle/internal/operations/BuildOperation;)I+10
+j  org.gradle.internal.operations.DefaultBuildOperationQueue$WorkerRunnable.lambda$runBatch$0(Lorg/gradle/internal/operations/BuildOperation;)Ljava/lang/Integer;+2
+j  org.gradle.internal.operations.DefaultBuildOperationQueue$WorkerRunnable$$Lambda$679.create()Ljava/lang/Object;+8
+j  org.gradle.internal.resources.AbstractResourceLockRegistry.whileDisallowingLockChanges(Lorg/gradle/internal/Factory;)Ljava/lang/Object;+17
+j  org.gradle.internal.work.DefaultWorkerLeaseService.whileDisallowingProjectLockChanges(Lorg/gradle/internal/Factory;)Ljava/lang/Object;+5
+j  org.gradle.internal.operations.DefaultBuildOperationQueue$WorkerRunnable.lambda$runBatch$1(Lorg/gradle/internal/operations/BuildOperation;)Ljava/lang/Integer;+33
+j  org.gradle.internal.operations.DefaultBuildOperationQueue$WorkerRunnable$$Lambda$676.create()Ljava/lang/Object;+8
+j  org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(Ljava/lang/Iterable;Lorg/gradle/internal/Factory;)Ljava/lang/Object;+26
+j  org.gradle.internal.operations.DefaultBuildOperationQueue$WorkerRunnable.runBatch(Lorg/gradle/internal/operations/BuildOperation;)V+33
+j  org.gradle.internal.operations.DefaultBuildOperationQueue$WorkerRunnable.run()V+11
+j  org.gradle.internal.operations.DefaultBuildOperationQueue.waitForCompletion()V+72
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.executeInParallel(ZLorg/gradle/internal/operations/BuildOperationQueue$QueueWorker;Lorg/gradle/api/Action;)V+84
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.lambda$runAll$4(Lorg/gradle/api/Action;Lorg/gradle/internal/operations/BuildOperationState;)V+18
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor$$Lambda$471.accept(Ljava/lang/Object;)V+12
+j  org.gradle.internal.operations.UnmanagedBuildOperationWrapper.runWithUnmanagedSupport(Lorg/gradle/internal/operations/BuildOperationState;Ljava/util/function/Consumer;)V+8
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.runAll(Lorg/gradle/api/Action;)V+15
+j  org.gradle.api.internal.artifacts.ivyservice.resolveengine.graph.builder.DependencyGraphBuilder.maybeDownloadMetadataInParallel(Lorg/gradle/api/internal/artifacts/ivyservice/resolveengine/graph/builder/NodeState;Ljava/util/Map;Ljava/util/List;Lorg/gradle/api/specs/Spec;)V+174
+j  org.gradle.api.internal.artifacts.ivyservice.resolveengine.graph.builder.DependencyGraphBuilder.resolveEdges(Lorg/gradle/api/internal/artifacts/ivyservice/resolveengine/graph/builder/NodeState;Ljava/util/List;Lorg/gradle/api/specs/Spec;ZLorg/gradle/api/internal/artifacts/ivyservice/resolveengine/graph/builder/ResolveState;Ljava/util/Map;)Z+30
+j  org.gradle.api.internal.artifacts.ivyservice.resolveengine.graph.builder.DependencyGraphBuilder.traverseGraph(Lorg/gradle/api/internal/artifacts/ivyservice/resolveengine/graph/builder/ResolveState;Ljava/util/Map;)V+119
+j  org.gradle.api.internal.artifacts.ivyservice.resolveengine.graph.builder.DependencyGraphBuilder.resolve(Lorg/gradle/api/internal/artifacts/ResolveContext;Lorg/gradle/api/internal/artifacts/ivyservice/resolveengine/graph/DependencyGraphVisitor;Z)V+168
+j  org.gradle.api.internal.artifacts.ivyservice.resolveengine.DefaultArtifactDependencyResolver.resolve(Lorg/gradle/api/internal/artifacts/ResolveContext;Ljava/util/List;Lorg/gradle/api/internal/artifacts/GlobalDependencyResolutionRules;Lorg/gradle/api/specs/Spec;Lorg/gradle/api/internal/artifacts/ivyservice/resolveengine/graph/DependencyGraphVisitor;Lorg/gradle/api/internal/artifacts/ivyservice/resolveengine/artifact/DependencyArtifactsVisitor;Lorg/gradle/api/internal/attributes/AttributesSchemaInternal;Lorg/gradle/api/internal/artifacts/type/ArtifactTypeRegistry;Z)V+102
+j  org.gradle.api.internal.artifacts.ivyservice.DefaultConfigurationResolver.resolveGraph(Lorg/gradle/api/internal/artifacts/configurations/ConfigurationInternal;Lorg/gradle/api/internal/artifacts/ResolverResults;)V+397
+j  org.gradle.api.internal.artifacts.ivyservice.ShortCircuitEmptyConfigurationResolver.resolveGraph(Lorg/gradle/api/internal/artifacts/configurations/ConfigurationInternal;Lorg/gradle/api/internal/artifacts/ResolverResults;)V+30
+j  org.gradle.api.internal.artifacts.ivyservice.ErrorHandlingConfigurationResolver.resolveGraph(Lorg/gradle/api/internal/artifacts/configurations/ConfigurationInternal;Lorg/gradle/api/internal/artifacts/ResolverResults;)V+6
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$1.call(Lorg/gradle/internal/operations/BuildOperationContext;)Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ResolveState;+53
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$1.call(Lorg/gradle/internal/operations/BuildOperationContext;)Ljava/lang/Object;+2
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(Lorg/gradle/internal/operations/CallableBuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+3
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+6
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Lorg/gradle/internal/operations/BuildOperation;+22
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Ljava/lang/Object;+8
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor$Builder;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecution;)Ljava/lang/Object;+134
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationWorker;Lorg/gradle/internal/operations/BuildOperationState;)V+18
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.call(Lorg/gradle/internal/operations/CallableBuildOperation;)Ljava/lang/Object;+16
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.lambda$call$2(Lorg/gradle/internal/operations/CallableBuildOperation;Lorg/gradle/internal/operations/BuildOperationState;)Ljava/lang/Object;+5
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor$$Lambda$151.apply(Ljava/lang/Object;)Ljava/lang/Object;+12
+j  org.gradle.internal.operations.UnmanagedBuildOperationWrapper.callWithUnmanagedSupport(Lorg/gradle/internal/operations/BuildOperationState;Ljava/util/function/Function;)Ljava/lang/Object;+8
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.call(Lorg/gradle/internal/operations/CallableBuildOperation;)Ljava/lang/Object;+15
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.resolveGraphIfRequired(Lorg/gradle/api/internal/artifacts/configurations/ConfigurationInternal$InternalState;Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ResolveState;)Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ResolveState;+66
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.lambda$resolveExclusively$4(Lorg/gradle/api/internal/artifacts/configurations/ConfigurationInternal$InternalState;Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ResolveState;)Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ResolveState;+19
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$$Lambda$437.apply(Ljava/lang/Object;)Ljava/lang/Object;+12
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$CalculatedModelValueImpl.update(Ljava/util/function/Function;)Ljava/lang/Object;+9
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.resolveExclusively(Lorg/gradle/api/internal/artifacts/configurations/ConfigurationInternal$InternalState;)Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ResolveState;+11
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.resolveToStateOrLater(Lorg/gradle/api/internal/artifacts/configurations/ConfigurationInternal$InternalState;)Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ResolveState;+168
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration.access$1900(Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration;Lorg/gradle/api/internal/artifacts/configurations/ConfigurationInternal$InternalState;)Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ResolveState;+2
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$SelectedArtifactsProvider.getValue()Lorg/gradle/api/internal/artifacts/ivyservice/resolveengine/artifact/VisitedArtifactSet;+14
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$SelectedArtifactsProvider.getValue()Ljava/lang/Object;+1
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$ConfigurationFileCollection.getSelectedArtifacts()Lorg/gradle/api/internal/artifacts/ivyservice/resolveengine/artifact/SelectedArtifactSet;+12
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$ConfigurationFileCollection.access$3500(Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ConfigurationFileCollection;)Lorg/gradle/api/internal/artifacts/ivyservice/resolveengine/artifact/SelectedArtifactSet;+1
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$ConfigurationArtifactCollection.lambda$new$0(ZLorg/gradle/api/internal/artifacts/configurations/ResolutionHost;)Lorg/gradle/api/internal/artifacts/configurations/DefaultConfiguration$ArtifactSetResult;+12
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$ConfigurationArtifactCollection$$Lambda$435.get()Ljava/lang/Object;+12
+j  org.gradle.internal.model.CalculatedValueContainerFactory$SupplierBackedCalculator.calculateValue(Lorg/gradle/api/internal/tasks/NodeExecutionContext;)Ljava/lang/Object;+4
+j  org.gradle.internal.model.CalculatedValueContainer$CalculationState.lambda$attachValue$0(Lorg/gradle/api/internal/tasks/NodeExecutionContext;)Ljava/lang/Object;+16
+j  org.gradle.internal.model.CalculatedValueContainer$CalculationState$$Lambda$436.call()Ljava/lang/Object;+8
+j  org.gradle.internal.Try.ofFailable(Ljava/util/concurrent/Callable;)Lorg/gradle/internal/Try;+1
+j  org.gradle.internal.model.CalculatedValueContainer$CalculationState.attachValue(Lorg/gradle/internal/model/CalculatedValueContainer;Lorg/gradle/api/internal/tasks/NodeExecutionContext;)V+28
+j  org.gradle.internal.model.CalculatedValueContainer.finalizeIfNotAlready(Lorg/gradle/api/internal/tasks/NodeExecutionContext;)V+13
+j  org.gradle.internal.model.CalculatedValueContainer.finalizeIfNotAlready()V+2
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$ConfigurationArtifactCollection.ensureResolved()V+4
+j  org.gradle.api.internal.artifacts.configurations.DefaultConfiguration$ConfigurationArtifactCollection.getArtifacts()Ljava/util/Set;+1
+j  org.gradle.composite.internal.CompositeBuildClassPathInitializer.execute(Lorg/gradle/api/artifacts/Configuration;)V+15
+j  org.gradle.composite.internal.CompositeBuildClassPathInitializer.execute(Ljava/lang/Object;)V+5
+j  org.gradle.api.internal.initialization.DefaultScriptClassPathResolver.resolveClassPath(Lorg/gradle/api/artifacts/Configuration;)Lorg/gradle/internal/classpath/ClassPath;+39
+j  org.gradle.api.internal.initialization.DefaultScriptHandler.getNonInstrumentedScriptClassPath()Lorg/gradle/internal/classpath/ClassPath;+8
+j  org.gradle.plugin.use.internal.DefaultPluginRequestApplicator.defineScriptHandlerClassScope(Lorg/gradle/api/internal/initialization/ScriptHandlerInternal;Lorg/gradle/api/internal/initialization/ClassLoaderScope;Ljava/lang/Iterable;)V+3
+j  org.gradle.plugin.use.internal.DefaultPluginRequestApplicator.applyPlugins(Lorg/gradle/plugin/management/internal/PluginRequests;Lorg/gradle/api/internal/initialization/ScriptHandlerInternal;Lorg/gradle/api/internal/plugins/PluginManagerInternal;Lorg/gradle/api/internal/initialization/ClassLoaderScope;)V+166
+j  org.gradle.configuration.DefaultScriptPluginFactory$ScriptPluginImpl.apply(Ljava/lang/Object;)V+222
+j  org.gradle.configuration.BuildOperationScriptPlugin$1.run(Lorg/gradle/internal/operations/BuildOperationContext;)V+11
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(Lorg/gradle/internal/operations/RunnableBuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+2
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+6
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Lorg/gradle/internal/operations/BuildOperation;+22
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Ljava/lang/Object;+8
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor$Builder;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecution;)Ljava/lang/Object;+134
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationWorker;Lorg/gradle/internal/operations/BuildOperationState;)V+18
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.run(Lorg/gradle/internal/operations/RunnableBuildOperation;)V+9
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.lambda$run$1(Lorg/gradle/internal/operations/RunnableBuildOperation;Lorg/gradle/internal/operations/BuildOperationState;)V+5
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor$$Lambda$198.accept(Ljava/lang/Object;)V+12
+j  org.gradle.internal.operations.UnmanagedBuildOperationWrapper.runWithUnmanagedSupport(Lorg/gradle/internal/operations/BuildOperationState;Ljava/util/function/Consumer;)V+8
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.run(Lorg/gradle/internal/operations/RunnableBuildOperation;)V+15
+j  org.gradle.configuration.BuildOperationScriptPlugin.lambda$apply$0(Ljava/lang/Object;Lorg/gradle/configuration/internal/UserCodeApplicationId;)V+14
+j  org.gradle.configuration.BuildOperationScriptPlugin$$Lambda$251.execute(Ljava/lang/Object;)V+12
+j  org.gradle.configuration.internal.DefaultUserCodeApplicationContext.apply(Lorg/gradle/internal/DisplayName;Lorg/gradle/api/Action;)V+37
+j  org.gradle.configuration.BuildOperationScriptPlugin.apply(Ljava/lang/Object;)V+61
+j  org.gradle.configuration.project.BuildScriptProcessor$$Lambda$569.accept(Ljava/lang/Object;)V+8
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$applyToMutableState$0(Ljava/util/function/Consumer;Lorg/gradle/api/internal/project/ProjectInternal;)Ljava/lang/Object;+2
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl$$Lambda$548.apply(Ljava/lang/Object;)Ljava/lang/Object;+8
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.fromMutableState(Ljava/util/function/Function;)Ljava/lang/Object;+149
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.applyToMutableState(Ljava/util/function/Consumer;)V+7
+j  org.gradle.configuration.project.BuildScriptProcessor.execute(Lorg/gradle/api/internal/project/ProjectInternal;)V+89
+j  org.gradle.configuration.project.BuildScriptProcessor.execute(Ljava/lang/Object;)V+5
+j  org.gradle.configuration.project.ConfigureActionsProjectEvaluator.evaluate(Lorg/gradle/api/internal/project/ProjectInternal;Lorg/gradle/api/internal/project/ProjectStateInternal;)V+33
+j  org.gradle.configuration.project.LifecycleProjectEvaluator$EvaluateProject.lambda$run$0(Lorg/gradle/internal/operations/BuildOperationContext;Lorg/gradle/api/internal/project/ProjectInternal;)V+67
+j  org.gradle.configuration.project.LifecycleProjectEvaluator$EvaluateProject$$Lambda$558.accept(Ljava/lang/Object;)V+12
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$applyToMutableState$0(Ljava/util/function/Consumer;Lorg/gradle/api/internal/project/ProjectInternal;)Ljava/lang/Object;+2
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl$$Lambda$548.apply(Ljava/lang/Object;)Ljava/lang/Object;+8
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$withProjectLock$3(Ljava/util/function/Function;)Ljava/lang/Object;+5
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl$$Lambda$549.create()Ljava/lang/Object;+8
+j  org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(Ljava/lang/Iterable;Lorg/gradle/internal/Factory;)Ljava/lang/Object;+26
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.withProjectLock(Lorg/gradle/internal/resources/ResourceLock;Ljava/util/function/Function;)Ljava/lang/Object;+18
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.fromMutableState(Ljava/util/function/Function;)Ljava/lang/Object;+234
+j  org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.applyToMutableState(Ljava/util/function/Consumer;)V+7
+j  org.gradle.configuration.project.LifecycleProjectEvaluator$EvaluateProject.run(Lorg/gradle/internal/operations/BuildOperationContext;)V+16
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(Lorg/gradle/internal/operations/RunnableBuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+2
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+6
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Lorg/gradle/internal/operations/BuildOperation;+22
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Ljava/lang/Object;+8
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor$Builder;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecution;)Ljava/lang/Object;+134
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationWorker;Lorg/gradle/internal/operations/BuildOperationState;)V+18
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.run(Lorg/gradle/internal/operations/RunnableBuildOperation;)V+9
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.lambda$run$1(Lorg/gradle/internal/operations/RunnableBuildOperation;Lorg/gradle/internal/operations/BuildOperationState;)V+5
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor$$Lambda$198.accept(Ljava/lang/Object;)V+12
+j  org.gradle.internal.operations.UnmanagedBuildOperationWrapper.runWithUnmanagedSupport(Lorg/gradle/internal/operations/BuildOperationState;Ljava/util/function/Consumer;)V+8
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.run(Lorg/gradle/internal/operations/RunnableBuildOperation;)V+15
+j  org.gradle.configuration.project.LifecycleProjectEvaluator.evaluate(Lorg/gradle/api/internal/project/ProjectInternal;Lorg/gradle/api/internal/project/ProjectStateInternal;)V+22
+j  org.gradle.api.internal.project.DefaultProject.evaluate()Lorg/gradle/api/internal/project/DefaultProject;+9
+j  org.gradle.api.internal.project.DefaultProject.evaluate()Lorg/gradle/api/Project;+1
+j  org.gradle.execution.TaskPathProjectEvaluator.configure(Lorg/gradle/api/internal/project/ProjectInternal;)V+37
+j  org.gradle.execution.TaskPathProjectEvaluator.configureHierarchy(Lorg/gradle/api/internal/project/ProjectInternal;)V+2
+j  org.gradle.configuration.DefaultProjectsPreparer.prepareProjects(Lorg/gradle/api/internal/GradleInternal;)V+45
+j  org.gradle.configuration.BuildTreePreparingProjectsPreparer.prepareProjects(Lorg/gradle/api/internal/GradleInternal;)V+118
+j  org.gradle.configuration.BuildOperationFiringProjectsPreparer$ConfigureBuild.run(Lorg/gradle/internal/operations/BuildOperationContext;)V+11
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(Lorg/gradle/internal/operations/RunnableBuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+2
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+6
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Lorg/gradle/internal/operations/BuildOperation;+22
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Ljava/lang/Object;+8
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor$Builder;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecution;)Ljava/lang/Object;+134
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationWorker;Lorg/gradle/internal/operations/BuildOperationState;)V+18
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.run(Lorg/gradle/internal/operations/RunnableBuildOperation;)V+9
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.lambda$run$1(Lorg/gradle/internal/operations/RunnableBuildOperation;Lorg/gradle/internal/operations/BuildOperationState;)V+5
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor$$Lambda$198.accept(Ljava/lang/Object;)V+12
+j  org.gradle.internal.operations.UnmanagedBuildOperationWrapper.runWithUnmanagedSupport(Lorg/gradle/internal/operations/BuildOperationState;Ljava/util/function/Consumer;)V+8
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.run(Lorg/gradle/internal/operations/RunnableBuildOperation;)V+15
+j  org.gradle.configuration.BuildOperationFiringProjectsPreparer.prepareProjects(Lorg/gradle/api/internal/GradleInternal;)V+13
+j  org.gradle.initialization.DefaultGradleLauncher.prepareProjects()V+18
+j  org.gradle.initialization.DefaultGradleLauncher.doClassicBuildStages(Lorg/gradle/initialization/DefaultGradleLauncher$Stage;)V+29
+j  org.gradle.initialization.DefaultGradleLauncher.doBuildStages(Lorg/gradle/initialization/DefaultGradleLauncher$Stage;)V+80
+j  org.gradle.initialization.DefaultGradleLauncher.executeTasks()Lorg/gradle/api/internal/GradleInternal;+4
+j  org.gradle.internal.invocation.GradleBuildController$$Lambda$197.transform(Ljava/lang/Object;)Ljava/lang/Object;+4
+j  org.gradle.internal.invocation.GradleBuildController$1.create()Ljava/lang/Object;+13
+j  org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(Ljava/lang/Iterable;Lorg/gradle/internal/Factory;)Ljava/lang/Object;+26
+j  org.gradle.internal.invocation.GradleBuildController.doBuild(Lorg/gradle/api/Transformer;)Ljava/lang/Object;+25
+j  org.gradle.internal.invocation.GradleBuildController.run()Lorg/gradle/api/internal/GradleInternal;+6
+j  org.gradle.tooling.internal.provider.runner.AbstractClientProvidedBuildActionRunner.runClientAction(Lorg/gradle/tooling/internal/provider/runner/AbstractClientProvidedBuildActionRunner$ClientAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+53
+j  org.gradle.tooling.internal.provider.runner.ClientProvidedPhasedActionRunner.run(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+70
+j  org.gradle.launcher.exec.ChainingBuildActionRunner.run(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+34
+j  org.gradle.launcher.exec.ChainingBuildActionRunner.run(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+34
+j  org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+147
+j  org.gradle.tooling.internal.provider.ValidatingBuildActionRunner.run(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+6
+j  org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner.run(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+227
+j  org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+28
+j  org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(Lorg/gradle/internal/operations/BuildOperationContext;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+71
+j  org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(Lorg/gradle/internal/operations/BuildOperationContext;)Ljava/lang/Object;+2
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(Lorg/gradle/internal/operations/CallableBuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+3
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationContext;)V+6
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Lorg/gradle/internal/operations/BuildOperation;+22
+j  org.gradle.internal.operations.DefaultBuildOperationRunner$3.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$ReadableBuildOperationContext;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecutionListener;)Ljava/lang/Object;+8
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperationDescriptor$Builder;Lorg/gradle/internal/operations/BuildOperationState;Lorg/gradle/internal/operations/DefaultBuildOperationRunner$BuildOperationExecution;)Ljava/lang/Object;+134
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Lorg/gradle/internal/operations/BuildOperation;Lorg/gradle/internal/operations/BuildOperationWorker;Lorg/gradle/internal/operations/BuildOperationState;)V+18
+j  org.gradle.internal.operations.DefaultBuildOperationRunner.call(Lorg/gradle/internal/operations/CallableBuildOperation;)Ljava/lang/Object;+16
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.lambda$call$2(Lorg/gradle/internal/operations/CallableBuildOperation;Lorg/gradle/internal/operations/BuildOperationState;)Ljava/lang/Object;+5
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor$$Lambda$151.apply(Ljava/lang/Object;)Ljava/lang/Object;+12
+j  org.gradle.internal.operations.UnmanagedBuildOperationWrapper.callWithUnmanagedSupport(Lorg/gradle/internal/operations/BuildOperationState;Ljava/util/function/Function;)Ljava/lang/Object;+8
+j  org.gradle.internal.operations.DefaultBuildOperationExecutor.call(Lorg/gradle/internal/operations/CallableBuildOperation;)Ljava/lang/Object;+15
+j  org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner.run(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/internal/invocation/BuildActionRunner$Result;+33
+j  org.gradle.launcher.exec.InProcessBuildActionExecuter.lambda$execute$0(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/internal/invocation/BuildController;)Lorg/gradle/launcher/exec/BuildActionResult;+6
+j  org.gradle.launcher.exec.InProcessBuildActionExecuter$$Lambda$150.transform(Ljava/lang/Object;)Ljava/lang/Object;+12
+j  org.gradle.composite.internal.DefaultRootBuildState.run(Lorg/gradle/api/Transformer;)Ljava/lang/Object;+43
+j  org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/internal/buildtree/BuildTreeContext;)Lorg/gradle/launcher/exec/BuildActionResult;+44
+j  org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Ljava/lang/Object;Ljava/lang/Object;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.launcher.exec.BuildTreeScopeLifecycleBuildActionExecuter.lambda$execute$0(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/internal/buildtree/BuildTreeContext;)Lorg/gradle/launcher/exec/BuildActionResult;+19
+j  org.gradle.launcher.exec.BuildTreeScopeLifecycleBuildActionExecuter$$Lambda$92.apply(Ljava/lang/Object;)Ljava/lang/Object;+12
+j  org.gradle.internal.buildtree.BuildTreeState.run(Ljava/util/function/Function;)Ljava/lang/Object;+7
+j  org.gradle.launcher.exec.BuildTreeScopeLifecycleBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/internal/session/BuildSessionContext;)Lorg/gradle/launcher/exec/BuildActionResult;+49
+j  org.gradle.launcher.exec.BuildTreeScopeLifecycleBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Ljava/lang/Object;Ljava/lang/Object;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/internal/session/BuildSessionContext;)Lorg/gradle/launcher/exec/BuildActionResult;+59
+j  org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Ljava/lang/Object;Ljava/lang/Object;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/internal/session/BuildSessionContext;)Lorg/gradle/launcher/exec/BuildActionResult;+33
+j  org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Ljava/lang/Object;Ljava/lang/Object;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.tooling.internal.provider.SessionScopeLifecycleBuildActionExecuter.lambda$execute$0(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/internal/session/BuildSessionContext;)Lorg/gradle/launcher/exec/BuildActionResult;+52
+j  org.gradle.tooling.internal.provider.SessionScopeLifecycleBuildActionExecuter$$Lambda$84.apply(Ljava/lang/Object;)Ljava/lang/Object;+12
+j  org.gradle.internal.session.BuildSessionState.run(Ljava/util/function/Function;)Ljava/lang/Object;+9
+j  org.gradle.tooling.internal.provider.SessionScopeLifecycleBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/initialization/BuildRequestContext;)Lorg/gradle/launcher/exec/BuildActionResult;+74
+j  org.gradle.tooling.internal.provider.SessionScopeLifecycleBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Ljava/lang/Object;Ljava/lang/Object;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/initialization/BuildRequestContext;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Ljava/lang/Object;Ljava/lang/Object;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/initialization/BuildRequestContext;)Lorg/gradle/launcher/exec/BuildActionResult;+175
+j  org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Ljava/lang/Object;Ljava/lang/Object;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/initialization/BuildRequestContext;)Lorg/gradle/launcher/exec/BuildActionResult;+7
+j  org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Ljava/lang/Object;Ljava/lang/Object;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/launcher/exec/BuildActionParameters;Lorg/gradle/initialization/BuildRequestContext;)Lorg/gradle/launcher/exec/BuildActionResult;+50
+j  org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Ljava/lang/Object;Ljava/lang/Object;)Lorg/gradle/launcher/exec/BuildActionResult;+10
+j  org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;Lorg/gradle/launcher/daemon/protocol/Build;)V+114
+j  org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+49
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+23
+j  org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+19
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+23
+j  org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+7
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+23
+j  org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+33
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+23
+j  org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create()Ljava/lang/Void;+4
+j  org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create()Ljava/lang/Object;+1
+j  org.gradle.util.Swapper.swap(Ljava/lang/Object;Lorg/gradle/internal/Factory;)Ljava/lang/Object;+21
+j  org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+63
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+23
+j  org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+28
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+23
+j  org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;Lorg/gradle/launcher/daemon/protocol/Build;)V+87
+j  org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+49
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+23
+j  org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;Lorg/gradle/launcher/daemon/protocol/Build;)V+356
+j  org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+49
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+23
+j  org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run()V+44
+j  org.gradle.launcher.daemon.server.DaemonStateCoordinator$1.run()V+4
+J 7792 c1 org.gradle.internal.concurrent.ManagedExecutorImpl$1.run()V (57 bytes) @ 0x00000001128c061c [0x00000001128c0360+0x00000000000002bc]
+j  java.util.concurrent.ThreadPoolExecutor.runWorker(Ljava/util/concurrent/ThreadPoolExecutor$Worker;)V+92 java.base@11.0.10
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+5 java.base@11.0.10
+j  org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run()V+7
+j  java.lang.Thread.run()V+11 java.base@11.0.10
+v  ~StubRoutines::call_stub
+
+siginfo: si_signo: 10 (SIGBUS), si_code: 2 (BUS_ADRERR), si_addr: 0x000000010c5bd583
+
+Register to memory mapping:
+
+RAX=0x0000000000000140 is an unknown value
+RBX=0x00000000000000fd is an unknown value
+RCX=0x0000000000000001 is an unknown value
+RDX=0x0000000000001006 is an unknown value
+RSP=0x000070000b88a688 is pointing into the stack for thread: 0x00007fe719a71000
+RBP=0x000070000b88a6d0 is pointing into the stack for thread: 0x00007fe719a71000
+RSI=0x000070000b88a690 is pointing into the stack for thread: 0x00007fe719a71000
+RDI=0x00007fe719a71348 points into unknown readable memory: 0x000000010a74e778 | 78 e7 74 0a 01 00 00 00
+R8 =0x000070000b88a6a8 is pointing into the stack for thread: 0x00007fe719a71000
+R9 =0x00000000001a58e7 is an unknown value
+R10=0x00000001195df01c is at entry_point+92 in (nmethod*)0x00000001195dee10
+R11=0x00000000000004b0 is an unknown value
+R12=0x0 is NULL
+R13=0x0000000112faeae4 is at entry_point+516 in (nmethod*)0x0000000112fae690
+R14=0x000070000b88a918 is pointing into the stack for thread: 0x00007fe719a71000
+R15=0x00007fe719a71000 is a thread
+
+
+Registers:
+RAX=0x0000000000000140, RBX=0x00000000000000fd, RCX=0x0000000000000001, RDX=0x0000000000001006
+RSP=0x000070000b88a688, RBP=0x000070000b88a6d0, RSI=0x000070000b88a690, RDI=0x00007fe719a71348
+R8 =0x000070000b88a6a8, R9 =0x00000000001a58e7, R10=0x00000001195df01c, R11=0x00000000000004b0
+R12=0x0000000000000000, R13=0x0000000112faeae4, R14=0x000070000b88a918, R15=0x00007fe719a71000
+RIP=0x000000010c5bd583, EFLAGS=0x0000000000010246, ERR=0x0000000000000014
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x000070000b88a688)
+0x000070000b88a688:   00000001195df095 000000078b3cc7a0
+0x000070000b88a698:   000000011128ecc0 000070000b88a750
+0x000070000b88a6a8:   00000007808d50b0 00000000000002c5
+0x000070000b88a6b8:   00000007807417f0 0000000780bc08d0
+0x000070000b88a6c8:   000000078a771278 000070000b88ab90
+0x000070000b88a6d8:   0000000112ddfd6c 000000078b3cc800
+0x000070000b88a6e8:   000000011128e755 000070000b88ad00
+0x000070000b88a6f8:   0000000112d1c9ec 000000078a771278
+0x000070000b88a708:   000070000b88a708 0000000129f044cc
+0x000070000b88a718:   000070000b88a7a8 0000000129f05388
+0x000070000b88a728:   0000000000000000 0000000786b7a550
+0x000070000b88a738:   0000000129f04550 0000000000000000
+0x000070000b88a748:   000070000b88a788 000070000b88ad00
+0x000070000b88a758:   0000000112d22ddc 000000078ab34698
+0x000070000b88a768:   000000078b3cc7a0 0000000000000000
+0x000070000b88a778:   0000000000000000 000000078a775778
+0x000070000b88a788:   0000000000000017 00000008000b13f8
+0x000070000b88a798:   0000000000000001 00000000f14eed1e
+0x000070000b88a7a8:   0000000111c2eb62 000070000b88ab90
+0x000070000b88a7b8:   0000000112dd2a84 000070000b88a848
+0x000070000b88a7c8:   0000000129f02808 0000000000000000
+0x000070000b88a7d8:   0000000786b7a4d8 00000000f01117e2
+0x000070000b88a7e8:   0000000119656c30 000000078a7765b8
+0x000070000b88a7f8:   0000000119586100 000000078088beb0
+0x000070000b88a808:   ffffffffffffffff 00000000f01117e5
+0x000070000b88a818:   0000000119656c30 00000073000002c5
+0x000070000b88a828:   0000000000003f62 000000078b3cced0
+0x000070000b88a838:   000000000000001c 000000078088be98
+0x000070000b88a848:   0000000118eb77d8 000000078088be98
+0x000070000b88a858:   000000078a7765b8 000000078a776288
+0x000070000b88a868:   0000000000001006 00007fe700000007
+0x000070000b88a878:   00000000f01117d9 0000000787446338 
+
+Instructions: (pc=0x000000010c5bd583)
+0x000000010c5bd483:   ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
+0x000000010c5bd493:   ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??
+0x000000010c5bd4a3:   ?? ?? ?? 
