@@ -18,22 +18,14 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.androiddevchallenge.R.drawable.*
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -43,11 +35,6 @@ class MainActivity : AppCompatActivity() {
             MyTheme {
                 MyApp()
             }
-            val navController = rememberNavController()
-            Surface(color = MaterialTheme.colors.background) {
-
-            }
-
         }
     }
 }
@@ -55,23 +42,12 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Welcome()
-    }
-}
+    val navController = rememberNavController()
 
-@Composable
-fun Welcome() {
-    Image(painterResource(id = R.drawable.welcome), contentDescription = "background")
-    Column(
-        modifier = Modifier
-            .padding(start = 8.dp, end = 8.dp)) {
-        Image(painterResource(id = logo), contentDescription = "logo")
-        Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(top = 32.dp)) {
-            Text(text = "Sign Up")
-        }
-        Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(top = 8.dp)) {
-            Text(text = "Login In")
+    Surface(color = MaterialTheme.colors.background) {
+        NavHost(navController = navController, startDestination = "welcome") {
+            composable("welcome") { WelcomeScreen(navController) }
+            composable("login") { LoginScreen() }
         }
     }
 }
@@ -84,7 +60,7 @@ fun LightPreview() {
     }
 }
 
-//@Preview("Dark Theme", widthDp = 360, heightDp = 640)
+@Preview("Dark Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun DarkPreview() {
     MyTheme(darkTheme = true) {
